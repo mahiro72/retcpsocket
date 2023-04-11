@@ -14,15 +14,20 @@ func main(){
 	}
 	msg := os.Args[1]
 
+	// syscall (socket, connect)
 	conn,err := net.Dial("tcp","localhost:8080")
 	if err != nil {
 		panic(err)
 	}
 
+	// syscall (write)
 	_,err = conn.Write([]byte(msg))
 	if err != nil {
 		log.Fatal(err)
 	}
+
+	// syscall (close)
+	conn.Close()
 
 	log.Println("send message success")
 }

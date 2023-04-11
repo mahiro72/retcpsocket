@@ -22,10 +22,12 @@ func main() {
 		}
 
 		buf := make([]byte,1024)
+		// syscall (read)
 		_,err = conn.Read(buf)
 		if err != nil {
 			log.Fatal(err)
 		}
+		// syscall (close)
 		conn.Close()
 
 		log.Println("receive message: ",string(buf))
